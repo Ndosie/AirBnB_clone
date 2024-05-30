@@ -3,6 +3,7 @@
 """Define a Base class"""
 from datetime import datetime
 import uuid
+import storage
 
 
 class BaseModel:
@@ -22,6 +23,8 @@ class BaseModel:
                         self.__dict__[k] = datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f") 
                     else:
                         self.__dict__[k] = v
+        else:
+            storage.new(self)
 
     def __str__(self):
         """Prints the string representation of an object"""
@@ -30,6 +33,7 @@ class BaseModel:
     def save(self):
         """Updates the update_at attribute"""
         self.update_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """Returns dictionary containing all the keys/values"""

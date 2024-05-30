@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 """Defines unit tests for BaseModel class"""
 
-import io
-import sys
 import unittest
 import time
 from datetime import datetime
@@ -48,16 +46,7 @@ class TestBaseModel_to_dict(unittest.TestCase):
 
 class TestBaseModel__str__(unittest.TestCase):
     """Tests __str__ method of BaseModel class"""
-    
-    @staticmethod
-    def capture_stdout(obj):
-        capture = io.StringIO()
-        sys.stdout = capture
-        obj.__str__()
-        sys.stdout = sys.__stdout__
-        return capture
 
     def test__str__(self):
         b = BaseModel()
-        output = TestBaseModel__str__.capture_stdout(b)
-        self.assertTrue(b.__class__.__name__ in output.getvalue())
+        self.assertTrue(b.__class__.__name__ in b.__str__())

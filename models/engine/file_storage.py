@@ -11,21 +11,22 @@ class FileStorage:
 
     def all(self):
         """Returns objects"""
-        return __objects
+        return FileStorage.__objects
     
     def new(self, obj):
         """Sets objects"""
-        __objects[obj.__class__.__name__ + "." + obj.id] = obj
+        class_n = obj.__class__.__name__
+        FileStorage.__objects["{}.{}".format(class_n, obj.id)] = obj
 
     def save(self):
         """Serializes objects to JSON file"""
-        with open(__file_path, mode='w') as f:
-            f.write(json.dumps(__objects))
+        with open(FileStorage__file_path, mode='w') as f:
+            f.write(json.dumps(FileStorage.__objects))
 
     def reload(self):
         """Deserializees Json to objects"""
         try:
-            with open(__file_path, mode='r') as f:
-                __objects = json.loads(f.read())
+            with open(FileStorage__file_path, mode='r') as f:
+                FileStorage.__objects = json.loads(f.read())
         except FILENOTFOUNDERROR:
-            pass
+            return

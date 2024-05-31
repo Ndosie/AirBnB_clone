@@ -23,6 +23,11 @@ class TestBaseModel_instantiation(unittest.TestCase):
         b = BaseModel()
         self.assertEqual(type(b.created_at), datetime)
 
+    def tests_kwargs(self):
+        b1 = BaseModel()
+        b2 = BaseModel(**b1.to_dict())
+        self.assertEqual(b1.id, b2.id)
+
 
 class TestBaseModel_save(unittest.TestCase):
     """Tests save method of BaseModel class"""

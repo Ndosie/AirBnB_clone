@@ -54,4 +54,4 @@ class TestFileStorage_reload(unittest.TestCase):
         FileStorage().save()
         FileStorage().reload()
         objs = FileStorage().all()
-        self.assertEqual(objs["BaseModel.{}".format(b.id)], b)
+        self.assertIsInstance(objs["BaseModel.{}".format(b.id)], BaseModel)

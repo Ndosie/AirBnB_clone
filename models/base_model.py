@@ -13,9 +13,6 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Initializes a new Base instance"""
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
         if kwargs and len(kwargs) != 0:
             for k,v in kwargs.items():
                 if k != '__class__':
@@ -24,6 +21,9 @@ class BaseModel:
                     else:
                         self.__dict__[k] = v
         else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
             models.storage.new(self)
 
     def __str__(self):

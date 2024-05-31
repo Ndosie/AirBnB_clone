@@ -41,6 +41,17 @@ class TestFileStorage_save(unittest.TestCase):
     def test_save(self):
         b = BaseModel()
         FileStorage().save()
-        with open('file.json', m='r') as f:
+        with open("file.json", mode="r") as f:
             contents = f.read()
-        self.assertEqual(b.id)
+        self.assertTrue(b.id in contents)
+
+
+class TestFileStorage_reload(unittest.TestCase):
+    """Tests reload method of FileStorage class"""
+
+    def test_reload(self):
+        b = BaseModel()
+        FileStorage().save()
+        FileStorage().reload()
+        objs = FileStorage().all()
+        self.assertEqual(objs["BaseModel.{}".format(b.id)], b)

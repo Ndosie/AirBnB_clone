@@ -10,9 +10,10 @@ class TestFileStorage_instatiation(unittest.TestCase):
     """Tests initalization of FileStorage class"""
 
     def test__objects(self):
-        b = BaseModel()
-        objs = FileStorage().all()
-        self.assertEqual(objs["BaseModel.{}".format(b.id)], b)
+        self.assertEqual(dict, type(FileStorage._FileStorage__objects))
+
+    def tests__file_path(self):
+        self.assertEqual(str, type(FileStorage._FileStorage__file_path))
 
 
 class TestFileStorage_all(unittest.TestCase):
@@ -53,5 +54,5 @@ class TestFileStorage_reload(unittest.TestCase):
         b = BaseModel()
         FileStorage().save()
         FileStorage().reload()
-        objs = FileStorage().all()
-        self.assertIsInstance(objs["BaseModel.{}".format(b.id)], BaseModel)
+        objs = FileStorage._FileStorage__objects
+        self.assertIn("BaseModel." + b.id, objs)

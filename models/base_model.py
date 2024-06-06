@@ -32,14 +32,14 @@ class BaseModel:
 
     def save(self):
         """Updates the update_at attribute"""
-        self.update_at = datetime.now()
+        self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
         """Returns dictionary containing all the keys/values"""
-        dict_b = self.__dict__
+        dict_b = self.__dict__.copy()
         dict_b['__class__'] = self.__class__.__name__
-        dict_b['created_at'] = datetime.isoformat(self.created_at)
-        dict_b['updated_at'] = datetime.isoformat(self.updated_at)
+        dict_b['created_at'] = self.created_at.isoformat()
+        dict_b['updated_at'] = self.updated_at.isoformat()
 
         return dict_b

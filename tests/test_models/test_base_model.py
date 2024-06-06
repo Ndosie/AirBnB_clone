@@ -35,9 +35,16 @@ class TestBaseModel_save(unittest.TestCase):
     def test_updated_at(self):
         b = BaseModel()
         before = b.updated_at
-        time.sleep(10)
+        time.sleep(5)
         b.save()
-        self.assertNotEqual(b.update_at, before)
+        self.assertNotEqual(b.updated_at, before)
+    
+    def test_save(self):
+        b = BaseModel()
+        b.save()
+        with open("file.json", mode="r") as f:
+            contents = f.read()
+        self.assertTrue(b.id in contents)
 
 
 class TestBaseModel_to_dict(unittest.TestCase):

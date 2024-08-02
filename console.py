@@ -102,7 +102,11 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         else:
             obj = o_dict["{}.{}".format(args[0], args[1])]
-            obj.__dict__[args[2]] = args[3]
+            for i in range(2, len(args), 2):
+                try:
+                    obj.__dict__[args[i]] = args[i + 1]
+                except IndexError:
+                    print("** value missing **")
             storage.save()
 
 if __name__ == '__main__':

@@ -17,17 +17,13 @@ class TestUser_instantiation(unittest.TestCase):
         self.assertEqual(str, type(u.id))
 
     def test_email(self):
-        User.email = 'user1@gmail.com'
-        self.assertEqual(User.email, 'user1@gmail.com')
+        self.assertEqual(type(User.email), str)
 
     def test_password(self):
-        User.password = '********'
-        self.assertEqual(User.password, '********')
+        self.assertEqual(type(User.password), str)
 
     def test_first_name(self):
-        User.first_name = 'Carrie'
-        self.assertEqual(User.first_name, 'Carrie')
+        self.assertEqual(type(User.first_name), str)
     
     def test_last_name(self):
-        User.last_name = 'Sanga'
-        self.assertEqual(User.last_name, 'Sanga')
+        self.assertEqual(type(User.last_name), str)

@@ -5,6 +5,11 @@ import cmd
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 def parse(arg):
@@ -15,7 +20,7 @@ class HBNBCommand(cmd.Cmd):
     """Defines hbnb command interpreter"""
 
     prompt = '(hbnb) '
-    __classes = { 'BaseModel', 'User' }
+    __classes = { 'BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review' }
 
     def emptyline(self):
         """Handles empty command to do nothing"""

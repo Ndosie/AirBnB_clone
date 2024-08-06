@@ -20,7 +20,15 @@ class HBNBCommand(cmd.Cmd):
     """Defines hbnb command interpreter"""
 
     prompt = '(hbnb) '
-    __classes = { 'BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review' }
+    __classes = {
+            'BaseModel',
+            'User',
+            'State',
+            'City',
+            'Amenity',
+            'Place',
+            'Review'
+            }
 
     def emptyline(self):
         """Handles empty command to do nothing"""
@@ -29,11 +37,11 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, arg):
         """Handles quit command to exit the program"""
         return True
-    
+
     def do_EOF(self, arg):
         """Handles EOF signal to exit the program"""
         return True
-    
+
     def do_create(self, arg):
         """Handles new instance creation"""
         args = parse(arg)
@@ -114,6 +122,7 @@ class HBNBCommand(cmd.Cmd):
                 except IndexError:
                     print("** value missing **")
             storage.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

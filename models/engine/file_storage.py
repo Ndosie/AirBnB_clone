@@ -19,7 +19,7 @@ class FileStorage:
     def all(self):
         """Returns objects"""
         return FileStorage.__objects
-    
+
     def new(self, obj):
         """Sets objects"""
         class_n = obj.__class__.__name__

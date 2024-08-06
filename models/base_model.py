@@ -14,10 +14,13 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """Initializes a new Base instance"""
         if kwargs and len(kwargs) != 0:
-            for k,v in kwargs.items():
+            for k, v in kwargs.items():
                 if k != '__class__':
                     if k == 'created_at' or k == 'updated_at':
-                        self.__dict__[k] = datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f") 
+                        self.__dict__[k] = datetime.strptime(
+                                v,
+                                "%Y-%m-%dT%H:%M:%S.%f"
+                                )
                     else:
                         self.__dict__[k] = v
         else:
@@ -28,7 +31,11 @@ class BaseModel:
 
     def __str__(self):
         """Prints the string representation of an object"""
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(
+                self.__class__.__name__,
+                self.id,
+                self.__dict__
+                )
 
     def save(self):
         """Updates the update_at attribute"""
